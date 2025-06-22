@@ -78,5 +78,3 @@ if generate:
         img = (img + 1) / 2.0  # Denormalize from [-1, 1] to [0, 1]
         img_pil = Image.fromarray(np.uint8(img * 255), mode='L').resize((100, 100))
         cols[i].image(img_pil, caption=f"Sample {i+1}", use_container_width=True)
-
-
