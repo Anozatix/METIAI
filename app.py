@@ -7,15 +7,24 @@ from PIL import Image
 
 # ==== Generator Definition ====
 class Generator(nn.Module):
-    def __init__(self, latent_dim=100):
-        super().__init__()
+    def __init__(self):
+        super(Generator, self).__init__()
         self.label_embed = nn.Embedding(10, 10)
+
         self.net = nn.Sequential(
             nn.Linear(latent_dim + 10, 256),
-            nn.ReLU(),
+            nn.BatchNorm1d(256),
+            nn.LeakyReLU(0.2, inplace=True),
+
             nn.Linear(256, 512),
-            nn.ReLU(),
-            nn.Linear(512, 784),
+            nn.BatchNorm1d(512),
+            nn.LeakyReLU(0.2, inplace=True),
+
+            nn.Linear(512, 1024),
+            nn.BatchNorm1d(1024),
+            nn.LeakyReLU(0.2, inplace=True),
+
+            nn.Linear(1024, 784),
             nn.Tanh()
         )
 
