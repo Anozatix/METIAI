@@ -6,6 +6,7 @@ import numpy as np
 from PIL import Image
 
 # ==== Generator Definition ====
+latent_dim = 100
 class Generator(nn.Module):
     def __init__(self):
         super(Generator, self).__init__()
